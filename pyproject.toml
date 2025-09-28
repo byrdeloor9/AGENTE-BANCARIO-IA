@@ -4,4 +4,8 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "langchain>=0.3.27",
+    "openai>=1.109.1",
+    "pytest>=8.4.2",
+]
