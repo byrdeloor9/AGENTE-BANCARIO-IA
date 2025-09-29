@@ -6,7 +6,7 @@ import os
 # Agregar el directorio raíz al path de Python
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-from src.tools import consultar_cuenta, consultar_tarjeta, consultar_polizas
+from _tools import consultar_cuenta, consultar_tarjeta, consultar_polizas
 
 def test_consultar_cuenta_existente():
     resultado = consultar_cuenta("123456")
