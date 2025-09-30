@@ -55,30 +55,41 @@ class CuentaBancaria:
         }
     
     def _cargar_movimientos(self) -> Dict[str, List[Dict]]:
-        """Cargar historial de movimientos por usuario"""
+        """Cargar historial de movimientos por usuario (incluye recientes e históricos)"""
         return {
             "123456": [
-                {"fecha": "2024-01-15", "tipo": "deposito", "monto": 500.0, "descripcion": "Deposito en efectivo"},
-                {"fecha": "2024-01-14", "tipo": "retiro", "monto": -200.0, "descripcion": "Retiro ATM"},
-                {"fecha": "2024-01-13", "tipo": "transferencia", "monto": 150.0, "descripcion": "Transferencia recibida"},
-                {"fecha": "2024-01-12", "tipo": "pago", "monto": -75.0, "descripcion": "Pago servicios"},
-                {"fecha": "2024-01-11", "tipo": "deposito", "monto": 1000.0, "descripcion": "Salario"}
+                # Movimientos recientes (últimos 7 días)
+                {"fecha": "2025-09-28", "tipo": "deposito", "monto": 500.0, "descripcion": "Deposito en efectivo"},
+                {"fecha": "2025-09-27", "tipo": "retiro", "monto": -200.0, "descripcion": "Retiro ATM"},
+                {"fecha": "2025-09-26", "tipo": "transferencia", "monto": 150.0, "descripcion": "Transferencia recibida"},
+                {"fecha": "2025-09-25", "tipo": "pago", "monto": -75.0, "descripcion": "Pago servicios"},
+                {"fecha": "2025-09-24", "tipo": "deposito", "monto": 1000.0, "descripcion": "Salario"},
+                # Movimientos históricos (más antiguos)
+                {"fecha": "2025-08-15", "tipo": "deposito", "monto": 800.0, "descripcion": "Deposito agosto"},
+                {"fecha": "2025-07-20", "tipo": "retiro", "monto": -300.0, "descripcion": "Retiro julio"},
+                {"fecha": "2025-06-10", "tipo": "transferencia", "monto": 250.0, "descripcion": "Transferencia junio"},
+                {"fecha": "2024-12-15", "tipo": "deposito", "monto": 1200.0, "descripcion": "Aguinaldo"},
+                {"fecha": "2024-11-01", "tipo": "pago", "monto": -400.0, "descripcion": "Pago noviembre"}
             ],
             "456789": [
-                {"fecha": "2024-01-15", "tipo": "retiro", "monto": -100.0, "descripcion": "Retiro ATM"},
-                {"fecha": "2024-01-14", "tipo": "deposito", "monto": 300.0, "descripcion": "Deposito cheque"},
-                {"fecha": "2024-01-13", "tipo": "pago", "monto": -150.0, "descripcion": "Pago tarjeta"},
-                {"fecha": "2024-01-12", "tipo": "transferencia", "monto": 200.0, "descripcion": "Transferencia recibida"}
+                {"fecha": "2025-09-28", "tipo": "retiro", "monto": -100.0, "descripcion": "Retiro ATM"},
+                {"fecha": "2025-09-27", "tipo": "deposito", "monto": 300.0, "descripcion": "Deposito cheque"},
+                {"fecha": "2025-09-26", "tipo": "pago", "monto": -150.0, "descripcion": "Pago tarjeta"},
+                {"fecha": "2025-09-25", "tipo": "transferencia", "monto": 200.0, "descripcion": "Transferencia recibida"},
+                {"fecha": "2025-08-10", "tipo": "deposito", "monto": 600.0, "descripcion": "Deposito agosto"},
+                {"fecha": "2025-07-05", "tipo": "retiro", "monto": -200.0, "descripcion": "Retiro julio"}
             ],
             "789101": [
-                {"fecha": "2024-01-15", "tipo": "deposito", "monto": 250.0, "descripcion": "Deposito ahorro"},
-                {"fecha": "2024-01-14", "tipo": "interes", "monto": 15.0, "descripcion": "Intereses generados"},
-                {"fecha": "2024-01-13", "tipo": "retiro", "monto": -50.0, "descripcion": "Retiro ATM"}
+                {"fecha": "2025-09-28", "tipo": "deposito", "monto": 250.0, "descripcion": "Deposito ahorro"},
+                {"fecha": "2025-09-27", "tipo": "interes", "monto": 15.0, "descripcion": "Intereses generados"},
+                {"fecha": "2025-09-26", "tipo": "retiro", "monto": -50.0, "descripcion": "Retiro ATM"},
+                {"fecha": "2025-08-20", "tipo": "deposito", "monto": 400.0, "descripcion": "Deposito agosto"}
             ],
             "101112": [
-                {"fecha": "2024-01-15", "tipo": "deposito", "monto": 800.0, "descripcion": "Deposito salario"},
-                {"fecha": "2024-01-14", "tipo": "pago", "monto": -300.0, "descripcion": "Pago hipoteca"},
-                {"fecha": "2024-01-13", "tipo": "transferencia", "monto": -100.0, "descripcion": "Transferencia enviada"}
+                {"fecha": "2025-09-28", "tipo": "deposito", "monto": 800.0, "descripcion": "Deposito salario"},
+                {"fecha": "2025-09-27", "tipo": "pago", "monto": -300.0, "descripcion": "Pago hipoteca"},
+                {"fecha": "2025-09-26", "tipo": "transferencia", "monto": -100.0, "descripcion": "Transferencia enviada"},
+                {"fecha": "2025-08-15", "tipo": "deposito", "monto": 700.0, "descripcion": "Deposito agosto"}
             ]
         }
     
@@ -154,6 +165,35 @@ class CuentaBancaria:
             "periodo_consultado": f"Últimos {dias} días",
             "total_movimientos": len(movimientos_filtrados),
             "movimientos": movimientos_filtrados
+        }
+    
+    def consultar_historial_completo(self) -> Dict:
+        """
+        Consultar historial completo de movimientos (sin filtro de fecha)
+        
+        Returns:
+            Dict con todos los movimientos históricos
+        """
+        if not self._validar_cuenta():
+            return {"error": "Cuenta no encontrada"}
+        
+        if self.usuario_id not in self._movimientos:
+            return {"error": "No hay movimientos disponibles"}
+        
+        movimientos = self._movimientos[self.usuario_id]
+        
+        # Ordenar por fecha descendente (más reciente primero)
+        movimientos_ordenados = sorted(
+            movimientos, 
+            key=lambda x: datetime.strptime(x["fecha"], "%Y-%m-%d"), 
+            reverse=True
+        )
+        
+        return {
+            "usuario_id": self.usuario_id,
+            "periodo_consultado": "Historial completo",
+            "total_movimientos": len(movimientos_ordenados),
+            "movimientos": movimientos_ordenados
         }
     
     def consultar_resumen_mensual(self, mes: int = 1, año: int = 2024) -> Dict:

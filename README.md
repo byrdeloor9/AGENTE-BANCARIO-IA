@@ -1,250 +1,214 @@
-# Agente Bancario IA - Banco Guayaquil
+# 🤖 Agente Bancario IA - Banco Guayaquil
 
-Sistema de consultas bancarias inteligente que utiliza OpenAI GPT-3.5-turbo para responder consultas sobre cuentas, tarjetas y pólizas de seguro del Banco Guayaquil.
+Sistema inteligente de consultas bancarias que utiliza **GPT-4o-mini** con **Function Calling** para proporcionar información sobre cuentas, tarjetas y pólizas.
 
-## Características
+## ✨ Características
 
-- **Consultas Generales**: Información sobre horarios, servicios, contacto y sucursales
-- **Consultas Específicas**: Acceso a información de cuentas, tarjetas y pólizas (requiere autenticación)
-- **Autenticación Condicional**: Solo solicita credenciales cuando es necesario
-- **Interfaz Conversacional**: Diseño minimalista y amigable
-- **Arquitectura POO**: Código modular y escalable
+- 🧠 **IA Conversacional** - Usa GPT-4o-mini con Function Calling
+- 🔧 **14 Herramientas Bancarias** - Acceso a datos de cuentas, tarjetas y pólizas
+- 📊 **Análisis Inteligente** - Genera insights y patrones de datos
+- 💬 **Contexto Conversacional** - Mantiene el historial de la conversación
+- 🎯 **Cero Código Hardcodeado** - El LLM decide qué herramientas usar automáticamente
 
-## Arquitectura del Proyecto
+## 🚀 Inicio Rápido
 
-```
-├── src/
-│   ├── main.py              # Aplicación principal
-│   └── __init__.py
-├── _tools/                  # Módulos de datos bancarios
-│   ├── __init__.py
-│   ├── cuentas.py          # Gestión de cuentas bancarias
-│   ├── tarjetas.py         # Gestión de tarjetas de crédito/débito
-│   └── polizas.py          # Gestión de pólizas de seguro
-├── _utils/                  # Utilidades del sistema
-│   ├── __init__.py
-│   └── security.py         # Autenticación de usuarios
-├── prompts/                 # Templates de prompts
-│   ├── prompt_agente_bancario.txt  # Para consultas específicas
-│   └── prompt_general.txt          # Para consultas generales
-├── tests/                   # Pruebas unitarias
-│   ├── __init__.py
-│   └── test_tools.py
-├── pyproject.toml          # Configuración del proyecto
-├── requirements.txt        # Dependencias
-├── .env                    # Variables de entorno
-└── README.md              # Este archivo
-```
+### **Requisitos**
+- Python 3.10+
+- OpenAI API Key
 
-## 🚀 Instalación
-
-### Prerrequisitos
-
-- Python 3.11+
-- Cuenta de OpenAI con API key
-
-### Pasos de Instalación
-
-1. **Clonar el repositorio**
-   ```bash
-   git clone <repository-url>
-   cd agente-bancario-ia
-   ```
-
-2. **Instalar dependencias con uv**
-   ```bash
-   uv sync
-   ```
-
-3. **Ejecutar la aplicación**
-   ```bash
-   uv run python src/main.py
-   ```
-
-## Configuración
-
-### Variables de Entorno
-
-Crear un archivo `.env` en la raíz del proyecto:
-
-```env
-OPENAI_API_KEY=sk-tu_api_key_de_openai_aqui
-```
-
-### Dependencias Principales
-
-- `langchain>=0.3.27`: Framework para aplicaciones LLM
-- `langchain-openai>=0.2.8`: Integración con OpenAI
-- `python-dotenv>=1.1.1`: Manejo de variables de entorno
-- `pytest>=8.4.2`: Framework de testing
-
-## Uso
-
-### Inicio de la Aplicación
+### **Instalación**
 
 ```bash
-uv run python src/main.py
+# 1. Clonar el repositorio
+git clone <repo-url>
+cd "AGENTE BANCARIO IA"
+
+# 2. Instalar dependencias
+pip install -r requirements.txt
+
+# 3. Configurar API Key
+# Crear archivo .env con:
+OPENAI_API_KEY=tu_api_key_aquí
+
+# 4. Ejecutar el agente
+python main.py
 ```
 
-### Interfaz de Usuario
-
+### **Credenciales de Prueba**
 ```
-============================================================
-BIENVENIDO AL AGENTE VIRTUAL DEL BANCO GUAYAQUIL
-============================================================
-
-Hola! Soy tu asistente virtual bancario.
-Puedo ayudarte con información general o consultas específicas.
-
-Opciones disponibles:
-  - Consultas generales (sin autenticación)
-  - Consultas de cuentas (requiere autenticación)
-  - Consultas de tarjetas (requiere autenticación)
-  - Consultas de pólizas (requiere autenticación)
-
-Escribe 'salir' para terminar.
-============================================================
-
-- Agente: Hola! En qué puedo ayudarte hoy?
-
-+ Consulta: Buenos dias
-- Agente: ¡Buenos días! Muy bien, gracias por preguntar. Estoy aquí para ayudarte con cualquier consulta sobre nuestros servicios bancarios...
-
-+ Consulta: Quiero consultar mi saldo
-- Agente: Esta consulta requiere autenticación.
-
-AUTENTICACIÓN REQUERIDA
-------------------------------
-Para acceder a esta información necesito verificar tu identidad.
-
-Por favor, ingresa tus credenciales:
 ID de usuario: 123456
-Token de autenticación: token123456
-
-- Agente: Autenticación exitosa! Ahora puedes acceder a toda tu información bancaria.
+Token: token123456
 ```
 
-### Tipos de Consultas
+## 📋 Herramientas Disponibles
 
-#### Consultas Generales (Sin Autenticación)
-- Horarios de atención
-- Información de contacto
-- Ubicación de sucursales
-- Tipos de servicios disponibles
-- Saludos y conversación casual
+### **Cuentas (6)**
+- `consultar_estado_cuenta` - Información general
+- `consultar_saldo` - Saldo actual
+- `consultar_movimientos_recientes` - Últimos 7 días
+- `consultar_historial_completo` - Todos los movimientos
+- `consultar_limite_disponible` - Límites diarios
+- `consultar_resumen_mensual_cuenta` - Resumen por mes
 
-#### Consultas Específicas (Con Autenticación)
-- **Cuentas**: Saldo, movimientos, límites
-- **Tarjetas**: Estado, transacciones, límites, pago mínimo
-- **Pólizas**: Estado, valor asegurado, pagos, reclamos, cobertura
+### **Tarjetas (4)**
+- `consultar_estado_tarjeta` - Información general
+- `consultar_saldo_disponible_tarjeta` - Saldo/crédito disponible
+- `consultar_transacciones_recientes_tarjeta` - Últimas transacciones
+- `consultar_historial_completo_tarjeta` - Todas las transacciones
 
-### Credenciales de Prueba
+### **Pólizas (3)**
+- `consultar_estado_poliza` - Información general
+- `consultar_historial_pagos_poliza` - Historial de pagos
+- `consultar_proximo_vencimiento_poliza` - Próximo vencimiento
 
-Para testing, usa estas credenciales:
-- **ID de usuario**: `123456`
-- **Token**: `token123456`
+## 💡 Ejemplos de Uso
 
-## Testing
-
-Ejecutar pruebas unitarias:
-
-```bash
-# Con pytest
-pytest tests/ -v
-
-# Con uv
-uv run pytest tests/ -v
+### **Consultas Simples**
+```
+Usuario: "¿Cuál es mi saldo?"
+Agente: "Tu saldo actual es de $2,500.00 USD."
 ```
 
-## Arquitectura de Clases
+### **Información Completa**
+```
+Usuario: "Dime más sobre mi cuenta"
+Agente: [Combina automáticamente estado + límites + actividad reciente]
+```
 
-### AgenteBancario
-- `_detectar_intencion()`: Identifica tipo de consulta
-- `_obtener_datos_bancarios()`: Obtiene datos específicos
-- `_formatear_contexto()`: Formatea información para el LLM
-- `responder()`: Procesa consultas específicas
-- `responder_general()`: Procesa consultas generales
+### **Análisis Inteligente**
+```
+Usuario: "Dame un insight de mis movimientos"
+Agente: 
+"📊 Resumen General:
+   • Total movimientos: 10
+   • Ingresos: +$2,900.00
+   • Egresos: -$975.00
+   
+💡 Patrones:
+   • Depósitos regulares día 24 (salarios)
+   • Principales gastos: ATM y servicios
+   
+📈 Recomendación:
+   Tu flujo de caja es positivo. Considera ahorrar parte de tus ingresos."
+```
 
-### InterfazConsola
-- `_mostrar_saludo_inicial()`: Muestra bienvenida
-- `_solicitar_autenticacion()`: Maneja autenticación
-- `_procesar_consulta()`: Procesa consultas individuales
-- `_procesar_sesion()`: Bucle principal de interacción
+### **Contexto Conversacional**
+```
+Usuario: "¿Mi saldo?"
+Agente: "$2,500.00 USD"
 
-### Clases de Datos Bancarios
+Usuario: "¿Y qué más?"
+Agente: [Entiende el contexto y proporciona info adicional de la cuenta]
+```
 
-#### CuentaBancaria
-- `consultar_estado_cuenta()`
-- `consultar_saldo()`
-- `consultar_movimientos_recientes()`
-- `consultar_limite_disponible()`
+## 🏗️ Arquitectura
 
-#### TarjetaBancaria
-- `consultar_estado_tarjeta()`
-- `consultar_saldo_disponible()`
-- `consultar_transacciones_recientes()`
-- `consultar_limite_disponible()`
-- `consultar_informacion_pago_minimo()`
+```
+┌─────────────────────────────────────────┐
+│   Usuario hace consulta                 │
+└──────────────┬──────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────────────┐
+│  AgenteBancario (gpt-4o-mini)           │
+│  • Analiza consulta                     │
+│  • Decide qué herramientas usar         │
+│  • Ejecuta herramientas                 │
+│  • Genera respuesta inteligente         │
+└──────────────┬──────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────────────┐
+│  BANKING_TOOLS (Catálogo)               │
+│  • 14 herramientas bancarias            │
+└──────────────┬──────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────────────┐
+│  ToolExecutor                           │
+│  • CuentaBancaria                       │
+│  • TarjetaBancaria                      │
+│  • PolizaSeguro                         │
+└─────────────────────────────────────────┘
+```
 
-#### PolizaSeguro
-- `consultar_estado_poliza()`
-- `consultar_valor_asegurado()`
-- `consultar_historial_pagos()`
-- `consultar_historial_reclamos()`
-- `consultar_cobertura_detallada()`
+## 📁 Estructura del Proyecto
 
-## Prompts
+```
+.
+├── main.py                      # Punto de entrada
+├── src/
+│   ├── agent.py                 # Agente principal con Function Calling
+│   └── agent_tools.py           # Definición de herramientas y executor
+├── _tools/
+│   ├── cuentas.py               # Lógica de cuentas bancarias
+│   ├── tarjetas.py              # Lógica de tarjetas
+│   └── polizas.py               # Lógica de pólizas
+├── _utils/
+│   └── security.py              # Autenticación
+└── prompts/
+    └── system_prompt.txt           # Prompt unificado del sistema
+```
 
-### Prompt Principal (`prompts/prompt_agente_bancario.txt`)
-- Para consultas específicas sobre cuentas, tarjetas y pólizas
-- Incluye contexto de datos bancarios del usuario
+## 🔧 Agregar Nueva Herramienta
 
-### Prompt General (`prompts/prompt_general.txt`)
-- Para consultas generales sobre servicios del banco
-- Información de horarios, contacto y servicios básicos
-- Instrucciones específicas para no inventar información sobre préstamos
+Es muy fácil extender las capacidades:
 
-## Seguridad
+```python
+# 1. En src/agent_tools.py, agregar a BANKING_TOOLS:
+{
+    "type": "function",
+    "function": {
+        "name": "nueva_herramienta",
+        "description": "Descripción clara de qué hace",
+        "parameters": {...}
+    }
+}
 
-- Autenticación requerida solo para consultas específicas
-- Datos bancarios simulados para desarrollo
-- Variables de entorno para API keys
-- Validación de credenciales
+# 2. En ToolExecutor.execute_tool():
+elif tool_name == "nueva_herramienta":
+    return self.objeto.nueva_herramienta(**tool_args)
+```
 
-## Desarrollo
+¡El LLM automáticamente sabrá cuándo usarla!
 
-### Estructura de Datos
+## 🎯 Ventajas de la Arquitectura
 
-Los datos bancarios están simulados en las clases correspondientes:
-- **Cuentas**: IDs 123456, 456789, 789101, 101112
-- **Tarjetas**: Diferentes tipos (crédito/débito) y marcas
-- **Pólizas**: Seguros de hogar y auto
+| Aspecto | Implementación |
+|---------|---------------|
+| **Decisiones** | El LLM decide qué herramientas usar |
+| **Respuestas** | Dinámicas y contextuales (no hardcodeadas) |
+| **Herramientas** | Puede combinar múltiples automáticamente |
+| **Análisis** | Genera insights de datos |
+| **Mantenimiento** | Simple - solo agregar herramientas |
+| **Escalabilidad** | Fácil - el LLM aprende nuevas herramientas |
 
-### Extensibilidad
+## 📊 Modelo de IA
 
-El sistema está diseñado para fácil extensión:
-- Agregar nuevos tipos de productos bancarios
-- Implementar nuevas funcionalidades de consulta
-- Integrar con sistemas bancarios reales
-- Agregar nuevos canales de comunicación
+- **Modelo:** GPT-4o-mini (OpenAI)
+- **Temperatura:** 0 (respuestas determinísticas)
+- **Capacidades:** Function Calling / Tool Use
+- **Contexto:** 128K tokens
+- **Costo:** ~$0.15/1M tokens input, ~$0.60/1M tokens output
 
-## Roadmap
+## 🔒 Seguridad
 
-- [ ] Integración con base de datos real
-- [ ] Interfaz web
-- [ ] Soporte para múltiples idiomas
-- [ ] Integración con WhatsApp/Telegram
-- [ ] Dashboard de administración
-- [ ] Métricas y analytics
+- Autenticación requerida para todas las consultas
+- Datos de prueba simulados (no conexión a BD real)
+- Validación de credenciales en `_utils/security.py`
 
-## Contribución
 
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+## 🤝 Contribuir
 
-## Licencia
+Para agregar nuevas funcionalidades:
+1. Agregar la herramienta en `src/agent_tools.py`
+2. Implementar la lógica en `_tools/`
+3. El LLM automáticamente aprenderá a usarla
 
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
+## 📄 Licencia
+
+Ver archivo `LICENSE`
+
+## 🆘 Soporte
+
+Para preguntas o problemas, contactar al equipo de desarrollo.

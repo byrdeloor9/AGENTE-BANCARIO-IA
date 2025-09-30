@@ -76,30 +76,34 @@ class PolizaSeguro:
         }
     
     def _cargar_historial_pagos(self) -> Dict[str, List[Dict]]:
-        """Cargar historial de pagos por usuario"""
+        """Cargar historial de pagos por usuario (actualizados a 2025)"""
         return {
             "123456": [
-                {"fecha": "2024-01-01", "monto": 85.50, "estado": "pagado", "metodo": "Débito automático", "periodo": "Enero 2024"},
-                {"fecha": "2023-12-01", "monto": 85.50, "estado": "pagado", "metodo": "Débito automático", "periodo": "Diciembre 2023"},
-                {"fecha": "2023-11-01", "monto": 85.50, "estado": "pagado", "metodo": "Transferencia", "periodo": "Noviembre 2023"},
-                {"fecha": "2023-10-01", "monto": 85.50, "estado": "pagado", "metodo": "Débito automático", "periodo": "Octubre 2023"},
-                {"fecha": "2023-09-01", "monto": 85.50, "estado": "pagado", "metodo": "Débito automático", "periodo": "Septiembre 2023"}
+                {"fecha": "2025-09-01", "monto": 85.50, "estado": "pagado", "metodo": "Débito automático", "periodo": "Septiembre 2025"},
+                {"fecha": "2025-08-01", "monto": 85.50, "estado": "pagado", "metodo": "Débito automático", "periodo": "Agosto 2025"},
+                {"fecha": "2025-07-01", "monto": 85.50, "estado": "pagado", "metodo": "Transferencia", "periodo": "Julio 2025"},
+                {"fecha": "2025-06-01", "monto": 85.50, "estado": "pagado", "metodo": "Débito automático", "periodo": "Junio 2025"},
+                {"fecha": "2025-05-01", "monto": 85.50, "estado": "pagado", "metodo": "Débito automático", "periodo": "Mayo 2025"},
+                {"fecha": "2025-04-01", "monto": 85.50, "estado": "pagado", "metodo": "Débito automático", "periodo": "Abril 2025"}
             ],
             "456789": [
-                {"fecha": "2024-01-01", "monto": 125.75, "estado": "pagado", "metodo": "Débito automático", "periodo": "Enero 2024"},
-                {"fecha": "2023-12-01", "monto": 125.75, "estado": "pagado", "metodo": "Débito automático", "periodo": "Diciembre 2023"},
-                {"fecha": "2023-11-01", "monto": 125.75, "estado": "pagado", "metodo": "Transferencia", "periodo": "Noviembre 2023"},
-                {"fecha": "2023-10-01", "monto": 125.75, "estado": "pagado", "metodo": "Débito automático", "periodo": "Octubre 2023"}
+                {"fecha": "2025-09-01", "monto": 125.75, "estado": "pagado", "metodo": "Débito automático", "periodo": "Septiembre 2025"},
+                {"fecha": "2025-08-01", "monto": 125.75, "estado": "pagado", "metodo": "Débito automático", "periodo": "Agosto 2025"},
+                {"fecha": "2025-07-01", "monto": 125.75, "estado": "pagado", "metodo": "Transferencia", "periodo": "Julio 2025"},
+                {"fecha": "2025-06-01", "monto": 125.75, "estado": "pagado", "metodo": "Débito automático", "periodo": "Junio 2025"},
+                {"fecha": "2025-05-01", "monto": 125.75, "estado": "pagado", "metodo": "Débito automático", "periodo": "Mayo 2025"}
             ],
             "789101": [
-                {"fecha": "2024-01-01", "monto": 110.25, "estado": "pagado", "metodo": "Débito automático", "periodo": "Enero 2024"},
-                {"fecha": "2023-12-01", "monto": 110.25, "estado": "pagado", "metodo": "Débito automático", "periodo": "Diciembre 2023"},
-                {"fecha": "2023-11-01", "monto": 110.25, "estado": "pagado", "metodo": "Transferencia", "periodo": "Noviembre 2023"}
+                {"fecha": "2025-09-01", "monto": 110.25, "estado": "pagado", "metodo": "Débito automático", "periodo": "Septiembre 2025"},
+                {"fecha": "2025-08-01", "monto": 110.25, "estado": "pagado", "metodo": "Débito automático", "periodo": "Agosto 2025"},
+                {"fecha": "2025-07-01", "monto": 110.25, "estado": "pagado", "metodo": "Transferencia", "periodo": "Julio 2025"},
+                {"fecha": "2025-06-01", "monto": 110.25, "estado": "pagado", "metodo": "Débito automático", "periodo": "Junio 2025"}
             ],
             "101112": [
-                {"fecha": "2024-01-01", "monto": 95.00, "estado": "pagado", "metodo": "Débito automático", "periodo": "Enero 2024"},
-                {"fecha": "2023-12-01", "monto": 95.00, "estado": "pagado", "metodo": "Débito automático", "periodo": "Diciembre 2023"},
-                {"fecha": "2023-11-01", "monto": 95.00, "estado": "pagado", "metodo": "Transferencia", "periodo": "Noviembre 2023"}
+                {"fecha": "2025-09-01", "monto": 95.00, "estado": "pagado", "metodo": "Débito automático", "periodo": "Septiembre 2025"},
+                {"fecha": "2025-08-01", "monto": 95.00, "estado": "pagado", "metodo": "Débito automático", "periodo": "Agosto 2025"},
+                {"fecha": "2025-07-01", "monto": 95.00, "estado": "pagado", "metodo": "Transferencia", "periodo": "Julio 2025"},
+                {"fecha": "2025-06-01", "monto": 95.00, "estado": "pagado", "metodo": "Débito automático", "periodo": "Junio 2025"}
             ]
         }
     

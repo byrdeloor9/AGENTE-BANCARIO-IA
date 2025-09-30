@@ -67,30 +67,38 @@ class TarjetaBancaria:
         }
     
     def _cargar_transacciones(self) -> Dict[str, List[Dict]]:
-        """Cargar historial de transacciones por usuario"""
+        """Cargar historial de transacciones por usuario (incluye recientes e históricas)"""
         return {
             "123456": [
-                {"fecha": "2024-01-15", "tipo": "compra", "monto": -150.0, "descripcion": "Supermercado ABC", "establecimiento": "ABC Store"},
-                {"fecha": "2024-01-14", "tipo": "compra", "monto": -75.0, "descripcion": "Gasolinera XYZ", "establecimiento": "Shell"},
-                {"fecha": "2024-01-13", "tipo": "pago", "monto": 500.0, "descripcion": "Pago mensual", "establecimiento": "Online"},
-                {"fecha": "2024-01-12", "tipo": "compra", "monto": -300.0, "descripcion": "Tienda departamental", "establecimiento": "Sears"},
-                {"fecha": "2024-01-11", "tipo": "interes", "monto": -45.0, "descripcion": "Intereses mensuales", "establecimiento": "Banco"}
+                # Transacciones recientes (últimos 7 días)
+                {"fecha": "2025-09-28", "tipo": "compra", "monto": -150.0, "descripcion": "Supermercado ABC", "establecimiento": "ABC Store"},
+                {"fecha": "2025-09-27", "tipo": "compra", "monto": -75.0, "descripcion": "Gasolinera XYZ", "establecimiento": "Shell"},
+                {"fecha": "2025-09-26", "tipo": "compra", "monto": -300.0, "descripcion": "Tienda departamental", "establecimiento": "Sears"},
+                {"fecha": "2025-09-25", "tipo": "compra", "monto": -120.0, "descripcion": "Restaurante", "establecimiento": "Olive Garden"},
+                {"fecha": "2025-09-24", "tipo": "pago", "monto": 500.0, "descripcion": "Pago mensual", "establecimiento": "Online"},
+                # Transacciones históricas
+                {"fecha": "2025-08-15", "tipo": "compra", "monto": -200.0, "descripcion": "Ropa", "establecimiento": "H&M"},
+                {"fecha": "2025-07-20", "tipo": "interes", "monto": -45.0, "descripcion": "Intereses mensuales", "establecimiento": "Banco"},
+                {"fecha": "2024-12-25", "tipo": "compra", "monto": -800.0, "descripcion": "Regalos navidad", "establecimiento": "Amazon"}
             ],
             "456789": [
-                {"fecha": "2024-01-15", "tipo": "retiro", "monto": -100.0, "descripcion": "Retiro ATM", "establecimiento": "ATM Plaza"},
-                {"fecha": "2024-01-14", "tipo": "compra", "monto": -50.0, "descripcion": "Farmacia", "establecimiento": "Fybeca"},
-                {"fecha": "2024-01-13", "tipo": "compra", "monto": -25.0, "descripcion": "Restaurante", "establecimiento": "McDonald's"},
-                {"fecha": "2024-01-12", "tipo": "deposito", "monto": 300.0, "descripcion": "Deposito", "establecimiento": "Cajero"}
+                {"fecha": "2025-09-28", "tipo": "retiro", "monto": -100.0, "descripcion": "Retiro ATM", "establecimiento": "ATM Plaza"},
+                {"fecha": "2025-09-27", "tipo": "compra", "monto": -50.0, "descripcion": "Farmacia", "establecimiento": "Fybeca"},
+                {"fecha": "2025-09-26", "tipo": "compra", "monto": -25.0, "descripcion": "Restaurante", "establecimiento": "McDonald's"},
+                {"fecha": "2025-09-25", "tipo": "deposito", "monto": 300.0, "descripcion": "Deposito", "establecimiento": "Cajero"},
+                {"fecha": "2025-08-10", "tipo": "compra", "monto": -150.0, "descripcion": "Supermercado", "establecimiento": "Mi Comisariato"}
             ],
             "789101": [
-                {"fecha": "2024-01-15", "tipo": "compra", "monto": -80.0, "descripcion": "Tienda de ropa", "establecimiento": "Zara"},
-                {"fecha": "2024-01-14", "tipo": "compra", "monto": -120.0, "descripcion": "Electrónicos", "establecimiento": "Best Buy"},
-                {"fecha": "2024-01-13", "tipo": "retiro", "monto": -60.0, "descripcion": "Retiro ATM", "establecimiento": "ATM Mall"}
+                {"fecha": "2025-09-28", "tipo": "compra", "monto": -80.0, "descripcion": "Tienda de ropa", "establecimiento": "Zara"},
+                {"fecha": "2025-09-27", "tipo": "compra", "monto": -120.0, "descripcion": "Electrónicos", "establecimiento": "Best Buy"},
+                {"fecha": "2025-09-26", "tipo": "retiro", "monto": -60.0, "descripcion": "Retiro ATM", "establecimiento": "ATM Mall"},
+                {"fecha": "2025-08-20", "tipo": "compra", "monto": -200.0, "descripcion": "Cine", "establecimiento": "Cinemark"}
             ],
             "101112": [
-                {"fecha": "2024-01-15", "tipo": "compra", "monto": -200.0, "descripcion": "Vuelos", "establecimiento": "Avianca"},
-                {"fecha": "2024-01-14", "tipo": "compra", "monto": -150.0, "descripcion": "Hotel", "establecimiento": "Marriott"},
-                {"fecha": "2024-01-13", "tipo": "pago", "monto": 800.0, "descripcion": "Pago mensual", "establecimiento": "Online"}
+                {"fecha": "2025-09-28", "tipo": "compra", "monto": -200.0, "descripcion": "Vuelos", "establecimiento": "Avianca"},
+                {"fecha": "2025-09-27", "tipo": "compra", "monto": -150.0, "descripcion": "Hotel", "establecimiento": "Marriott"},
+                {"fecha": "2025-09-26", "tipo": "pago", "monto": 800.0, "descripcion": "Pago mensual", "establecimiento": "Online"},
+                {"fecha": "2025-08-15", "tipo": "compra", "monto": -350.0, "descripcion": "Electrodomésticos", "establecimiento": "Comandato"}
             ]
         }
     
@@ -195,6 +203,35 @@ class TarjetaBancaria:
             "periodo_consultado": f"Últimos {dias} días",
             "total_transacciones": len(transacciones_filtradas),
             "transacciones": transacciones_filtradas
+        }
+    
+    def consultar_historial_completo(self) -> Dict:
+        """
+        Consultar historial completo de transacciones (sin filtro de fecha)
+        
+        Returns:
+            Dict con todas las transacciones históricas
+        """
+        if not self._validar_tarjeta():
+            return {"error": "Tarjeta no encontrada"}
+        
+        if self.usuario_id not in self._transacciones:
+            return {"error": "No hay transacciones disponibles"}
+        
+        transacciones = self._transacciones[self.usuario_id]
+        
+        # Ordenar por fecha descendente (más reciente primero)
+        transacciones_ordenadas = sorted(
+            transacciones, 
+            key=lambda x: datetime.strptime(x["fecha"], "%Y-%m-%d"), 
+            reverse=True
+        )
+        
+        return {
+            "usuario_id": self.usuario_id,
+            "periodo_consultado": "Historial completo",
+            "total_transacciones": len(transacciones_ordenadas),
+            "transacciones": transacciones_ordenadas
         }
     
     def consultar_resumen_mensual(self, mes: int = 1, año: int = 2024) -> Dict:
