@@ -18,6 +18,7 @@ Sistema inteligente de consultas bancarias que utiliza **GPT-4o-mini** con **Fun
 
 ### **Instalación**
 
+#### **Opción 1: Usando pip (tradicional)**
 ```bash
 # 1. Clonar el repositorio
 git clone <repo-url>
@@ -33,6 +34,28 @@ OPENAI_API_KEY=tu_api_key_aquí
 # 4. Ejecutar el agente
 python main.py
 ```
+
+#### **Opción 2: Usando uv (recomendado)**
+```bash
+# 1. Clonar el repositorio
+git clone <repo-url>
+cd "AGENTE BANCARIO IA"
+
+# 2. Instalar uv (si no lo tienes)
+pip install uv
+
+# 3. Instalar dependencias con uv
+uv sync
+
+# 4. Configurar API Key
+# Crear archivo .env con:
+OPENAI_API_KEY=tu_api_key_aquí
+
+# 5. Ejecutar el agente
+uv run python main.py
+```
+
+> **💡 Nota**: `uv` es más rápido y eficiente que `pip` para la gestión de dependencias. Si tienes `uv.lock` en el proyecto, se recomienda usar `uv sync`.
 
 ### **Credenciales de Prueba**
 ```
